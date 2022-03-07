@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
       this.searchResults = this.temp.Search
         .filter((name: { Poster: string, Type: string;}) => //Du kan lägga till fler filter om du vill
           name.Poster !== "N/A" && name.Type === "movie"
-        ); //Filtrerar bort de utan filmer för att unvika bugs
+        ); //Tar inte med serier, tar inte med filmer utan en bild 
       this.getMovies(this.searchResults); //Hämta komplett info för varje film i search
       this.emptyArray(); //Töm för att inte uppdatering skall haka upp sig
     })
