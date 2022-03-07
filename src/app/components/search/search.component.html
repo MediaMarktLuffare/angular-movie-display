@@ -1,0 +1,26 @@
+<form class="form-inline container-fluid">
+    <div class="form-group">
+      <input 
+            
+            class="form-control"
+            placeholder="Enter search string"
+            [formControl]="searchField">
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="searchField.invalid"
+      (click)="getInput(searchField.value)"
+    >Search</button>
+  </form>
+  
+<div class="container-fluid"
+      *ngFor="let movie of movieResults">
+      <h3>{{ movie.Title }}</h3>
+      <img 
+        src="{{ movie.Poster }}"  
+      >
+      <span>
+        <p> {{ movie.Runtime }}</p>
+      </span>
+</div>
