@@ -16,17 +16,20 @@ export class SearchComponent implements OnInit {
   subscription!: Subscription;
   movieResults: any[] = [];
 
+  featuredList: any[] = [];
+
   constructor(
     private movieService: MovieService,
   ) { }
 
   ngOnInit(): void {
+    this.fetchFeatured();
   }
 
   getInput(term: string) {
     this.movieService.searchGetCall(term).subscribe(res => {
       this.temp = res; //kopiera över hela Search array från API
-      //console.log(res)
+      console.log(res)
       this.searchResults = this.temp.Search
         .filter((name: { Poster: string, Type: string;}) => //Du kan lägga till fler filter om du vill
           name.Poster !== "N/A" && name.Type === "movie"
@@ -46,6 +49,15 @@ export class SearchComponent implements OnInit {
         this.movieResults.push(res);
       })
     })
+  }
+
+  fetchFeatured(){
+    this.movieService.getMovieId().forEach(id => {
+      this.movieService.fetchMovie(id).subscribe(res => {
+        //console.log(typeof(res.Title)); //Kolla om den är compatible med interface
+        this.featuredList.push(res);
+      });
+    });
   }
 
   ngOnDestroy() {

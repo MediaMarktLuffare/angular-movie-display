@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MovieService {
+
+  private ids = ['tt3896198', 'tt1160419','tt0120338', 'tt10223460', 'tt0117571', 'tt0245429', 'tt4154796', 'tt0108052'];
+
   constructor(
     private http: HttpClient,
   ) { }
@@ -18,5 +21,9 @@ export class MovieService {
     //console.log("Here");
     const apiURL = `http://www.omdbapi.com/?i=${term}&apikey=1d799ea5&plot=full`;
     return this.http.get<any>(apiURL);
+  }
+
+  getMovieId(){
+    return this.ids;
   }
 }

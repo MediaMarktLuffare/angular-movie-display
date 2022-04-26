@@ -1,3 +1,23 @@
+
+
+<div class="movie-container row">
+  <h1> Featured Movies </h1>
+  <div 
+      class="column" 
+      *ngFor="let movie of featuredList"
+    >
+      <img 
+        class="img-thumbnail blur"
+        src="{{ movie.Poster }}" 
+        width="189.33" 
+        height="280.2" 
+      >
+      <span>
+       <p class="overflow-text"> {{ movie.Title + " " + movie.Runtime}}</p>
+      </span>
+  </div>
+</div>
+
 <form class="form-inline container-fluid">
     <div class="form-group">
       <input 
@@ -13,14 +33,22 @@
       (click)="getInput(searchField.value)"
     >Search</button>
   </form>
-  
-<div class="container-fluid"
-      *ngFor="let movie of movieResults">
-      <h3>{{ movie.Title }}</h3>
+
+
+<div class="movie-container row">
+  <h1> Search Results </h1>
+  <div 
+      class="column" 
+      *ngFor="let movie of movieResults"
+    >
       <img 
-        src="{{ movie.Poster }}"  
+        class="img-thumbnail blur"
+        src="{{ movie.Poster }}" 
+        width="189.33" 
+        height="280.2" 
       >
       <span>
-        <p> {{ movie.Runtime }}</p>
+       <p class="overflow-text"> {{ movie.Title + " " + movie.Runtime}}</p>
       </span>
+  </div>
 </div>
